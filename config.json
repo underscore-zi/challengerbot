@@ -1,0 +1,65 @@
+{
+  "guild":"373299459326476288",
+  "channel":"",
+  "default_color": "0x495175",
+  "command_string": "$",
+  "roles":{
+    "exploit_dev":"687941397231566867",
+    "reverse_engineer":"687941414935724079",
+    "programmer":"687941414935724079",
+    "pentester":"687941414935724079"
+  },
+  "challenges": [
+    {
+      "id":"sorting",
+      "name": "Hacker Sort (Programmer)",
+      "description": "Just sort the |_337-ified comma-separated words into alphabetical order in under two seconds.",
+      "link": "http://little-canada.org/roguesec/programming.php",
+      "flag": "redacted-sorting",
+      "role": "programmer",
+      "hints": [
+        "Solve it manually first, then automate that process.",
+        "Leetifying words is just replace a letter you know, and replacing it with some other characters that look similar, like m becomes |\\/|, try to figure out what all the replacements are.",
+        "Don't forget to send your session id cookie if you are not solving this in the browser."
+      ]
+    },
+    {
+      "id":"newloc",
+      "name": "New Location (Pentester)",
+      "description": "If you can provide the key, you'll get the flag!",
+      "link": "http://challenges.0x0539.net:3012/index.php",
+      "flag": "redacted-newloc",
+      "role": "pentester",
+      "hints": [
+        "Maybe trying viewing the application source, see if there is anything fishy?",
+        "Follow the code path that leads to the key being shown, is there anything wrong with its logic?",
+        "Do you understand how redirects work"
+      ]
+    },
+    {
+      "id":"bleed",
+      "name": "Bleed The Stack (Exploit Developer)",
+      "description": "An amateur programmer decides that for his hello world program, he will echo whatever you say. Can you find his mistake?\n\n`nc challenges.0x0539.net 7070`",
+      "flag": "redacted-bleed",
+      "role": "exploit_dev",
+      "hints": [
+        "Many beginner C programmers make this type of mistake when printing user input to the screen",
+        "What function is commonly used in C to print strings to the screen, are any well known to be a source of bugs?"
+      ]
+    },
+    {
+      "id":"fragmented",
+      "name": "Fragmented (Reverse Engineer)",
+      "description": "There's a binary that would give you the flag, but someone got angry and tore it into seven pieces. Re-assemble it and grab the flag.",
+      "flag": "redacted-fragmented",
+      "role": "reverse_engineer",
+      "filename": "fragmented.zip",
+      "filetype": "application/zip",
+      "hints": [
+        "Start by trying to figure out what type of file this is.",
+        "Most files have what is called a magic number that identifies its file type",
+        "Executable files contain information about their layouts maybe you can use that to help"
+      ]
+    }
+  ]
+}
