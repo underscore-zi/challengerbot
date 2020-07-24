@@ -2,6 +2,8 @@
 
 A simple Discord bot that is capable of serving a CTF-style challenges and rewarding roles for successfully solving challenges.
 
+The original idea for this bot was to allow users to gain roles by demonstrating some minimal degree of understanding of a topic by solving a challenge.
+
 ## Commands
 
  - **challenges** - Will display a list of challenge IDs and their titles
@@ -22,8 +24,6 @@ The following permissions are used:
  - Embed Links - Needed to link to website relating to a challenge. This can be ignored if you don't configure any challenges with links
  - Attach Files - Needed to attach challenge files. This can be ignored if you do not configure any challenges with attached files
  - Oauth2 Link: discord.com/api/oauth2/authorize?client_id=**YOUR_APPLICATION_CLIENT_ID_HERE**&permissions=268486656&scope=bot
- 
-Once the bot has been joined to your guild/server note the bot's 
 
 ### config.json
 
