@@ -8,23 +8,23 @@ import (
 	"io/ioutil"
 	"os"
 	"os/signal"
+	"path/filepath"
 	"strconv"
 	"strings"
 	"syscall"
-	"path/filepath"
 )
 
 type Challenge struct {
-	ID          string   `json:"id"`               // A short memorable identifier for challenge, users will look challenges up with this
-	Name        string   `json:"name"`             // Title should be a minimal hint towards the type of challenge this is
-	Description string   `json:"description"`      // Description that contains the location of the challenge
-	Hints       []string `json:"hints"`            // Hints in increasing order of helpfulness
-	Flag        string   `json:"flag"`             // The final flag without any wrapper{text}
-	Role        string   `json:"role"`             // Role should reflect a key to the BotConfig.Roles map
-	FileName    string   `json:filename,omitempty` // Optional FileName to server with this challenge
-	FileType    string   `json:filetype,omitempty` // If you specify a FileName a FileType (MIME type) must be provided
-	Link        string   `json:link,omitempty`     // Option URL for the challenge message ot link to
-	Color       string   `json:color,omitempty`    // Optional ability to specify the color of the embed, Black(0) is default
+	ID          string   `json:"id"`                 // A short memorable identifier for challenge, users will look challenges up with this
+	Name        string   `json:"name"`               // Title should be a minimal hint towards the type of challenge this is
+	Description string   `json:"description"`        // Description that contains the location of the challenge
+	Hints       []string `json:"hints"`              // Hints in increasing order of helpfulness
+	Flag        string   `json:"flag"`               // The final flag without any wrapper{text}
+	Role        string   `json:"role"`               // Role should reflect a key to the BotConfig.Roles map
+	FileName    string   `json:"filename,omitempty"` // Optional FileName to server with this challenge
+	FileType    string   `json:"filetype,omitempty"` // If you specify a FileName a FileType (MIME type) must be provided
+	Link        string   `json:"link,omitempty"`     // Option URL for the challenge message ot link to
+	Color       string   `json:"color,omitempty"`    // Optional ability to specify the color of the embed, Black(0) is default
 }
 type BotConfig struct {
 	DiscordToken   string            // Discord Bot token, must be specified in BOT_TOKEN environment var
@@ -129,6 +129,8 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 		case "hint":
 			commandHint(s, m, info)
 		case "commands":
+			fallthrough
+		case "help":
 			commandHelp(s, m)
 		}
 	}
@@ -154,8 +156,9 @@ func getChallengeById(id string) (Challenge, error) {
 // Command handler for listing all the available challenges
 func commandListChallenges(s *discordgo.Session, m *discordgo.MessageCreate) {
 	output := "```"
+	cStr := Config().CommandString
 	for _, v := range Config().Challenges {
-		output += fmt.Sprintf("%-18s %s\n", "["+v.ID+"]", v.Name)
+		output += fmt.Sprintf("%schallenges %s - %s\n", cStr, v.ID, v.Name)
 	}
 	output += "```"
 	s.ChannelMessageSend(m.ChannelID, output)
@@ -204,8 +207,8 @@ func commandDisplayChallenge(s *discordgo.Session, m *discordgo.MessageCreate, a
 		}
 
 		fd, err := os.Open(file)
-		defer fd.Close()
 		if err == nil {
+			defer fd.Close()
 			message.File = &discordgo.File{}
 			message.File.Name = challenge.FileName
 			message.File.ContentType = challenge.FileType

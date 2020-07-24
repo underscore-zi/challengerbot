@@ -7,7 +7,7 @@ The original idea for this bot was to allow users to gain roles by demonstrating
 ## Commands
 
  - **challenges** - Will display a list of challenge IDs and their titles
- - **challenge <id>** - Will display the information you need to know to get started on the challenge
+ - **challenge [id]** - Will display the information you need to know to get started on the challenge
  - **hint <id> [number]** -Will display a hint for a challenge, if a challenge has multiple hints they can be accessed by index starting with 1.
  - **commands** - Lists the supported commands and a brief description.
 
