@@ -1,17 +1,17 @@
-#Challenger Bot
+# Challenger Bot
 
 A simple Discord bot that is capable of serving a CTF-style challenges and rewarding roles for successfully solving challenges.
 
-##Commands
+## Commands
 
  - **challenges** - Will display a list of challenge IDs and their titles
  - **challenge <id>** - Will display the information you need to know to get started on the challenge
  - **hint <id> [number]** -Will display a hint for a challenge, if a challenge has multiple hints they can be accessed by index starting with 1.
  - **commands** - Lists the supported commands and a brief description.
 
-##Configuration
+## Configuration
 
-###Bot Creation
+### Bot Creation
 
 To start you will need to login to the Discord Developer Portal and create a new Application with a Bot.
 
@@ -25,12 +25,12 @@ The following permissions are used:
  
 Once the bot has been joined to your guild/server note the bot's 
 
-###config.json
+### config.json
 
 Primary configuration for the bot is done using a .json file that is loaded when the bot starts. There is presently no way to update the bot's configuration at runtime. You can refer to ./config.json for an example configuration file. 
 
 All values unless otherwise noted are *strings*
-#####Config Keys
+##### Config Keys
 **guild** - The Guild ID that bot should run in
 
 **channel** - The Channel ID that the bot should listen in. If blank the bot will be active in all channels. 
@@ -136,7 +136,7 @@ Challenge objects can also contain the follow optional fields
 
 ![](http://se.ri0.us/2020-07-23-204059667-4a9b6.png)
 
-###Environment
+### Environment
 
 Two environment variables are necessary:
 
